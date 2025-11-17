@@ -1,0 +1,3 @@
+# Main command:
+
+$ nextflow run main.nf -c nextflow.config -profile apptainer

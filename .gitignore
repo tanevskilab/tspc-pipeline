@@ -210,3 +210,6 @@ __marimo__/
 *.tif*
 /work
 .nextflow*
+
+# Cellpose stuff
+cpsam_20250915_7
