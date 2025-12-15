@@ -13,6 +13,7 @@ process CELLPOSESAM {
     script:
     """
     export HOME=\$PWD
+    python -c "import torch; print(torch.cuda.is_available())"
 
     python -m cellpose \
         --use_gpu \
