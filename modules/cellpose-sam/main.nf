@@ -1,6 +1,5 @@
 process CELLPOSESAM {
-    //abel 'process_gpu'
-    //conda "cellpose-sam"
+    label 'gpu_job'
     container "/home/hd/hd_hd/hd_dy329/singularity_images/cp-sam.sif"
 
     input:
@@ -9,17 +8,18 @@ process CELLPOSESAM {
     output:
     //stdout()
     tuple val(meta), path("*.tif*"), emit: mask
+    //path("gpu_avail.txt"), emit: gpu_check
 
     script:
     """
     export HOME=\$PWD
-    python -c "import torch; print(torch.cuda.is_available())"
-
+    python -c "import torch; print(torch.cuda.is_available())" 
     python -m cellpose \
         --use_gpu \
-        --pretrained_model /gpfs/bwfor/work/ws/hd_dy329-tspc/tspc-pipeline/cpsam_20250915_7 \
         --image_path $image \
+        --all_channels \
         --save_tif \
+        --flow_threshold 0 \
         --verbose
     """
 }

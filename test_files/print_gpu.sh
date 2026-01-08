@@ -11,7 +11,9 @@ module load devel/java_jdk/1.18
 module load system/singularity/3.11.3
 #export NXF_SINGULARITY_CACHEDIR=$HOME/singularity_images
 #singularity exec --nv cp-sam.sif nvidia-smi > output.txt
-source /home/hd/hd_hd/hd_dy329/.bashrc
 
 singularity exec --nv cp-sam.sif python -c "import torch; print(torch.cuda.is_available())" > gpu_avail.txt
 
+nextflow run /home/hd/hd_hd/hd_dy329/Repositories/tspc-pipeline/cellpose.nf \
+	-c /home/hd/hd_hd/hd_dy329/Repositories/tspc-pipeline/nextflow.config \
+	-profile apptainer

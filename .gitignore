@@ -211,6 +211,7 @@ __marimo__/
 /work
 .nextflow*
 slurm*.out
+*.html
 
 # Cellpose stuff
 cpsam_20250915_7

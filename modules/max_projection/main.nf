@@ -1,7 +1,8 @@
 pythonScript = "${workflow.projectDir}/bin/max_projection.py"
 
 process MAX_PROJECTION {
-    container "/home/hd/hd_hd/hd_dy329/singularity_images/cp-sam.sif"
+    label 'large_job'
+    container "/home/hd/hd_hd/hd_dy329/singularity_images/ghcr.io-schapirolabor-background_subtraction-v0.5.1.img"
 
     input:
     tuple val(meta), path(image)
