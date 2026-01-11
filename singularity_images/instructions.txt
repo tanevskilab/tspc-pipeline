@@ -1,0 +1,13 @@
+It is possible to build singularity images remotely using the servers
+from sylabs.io. This avoids issues like not having sudo access in slurm
+or more laborious tasks like building the image locally with docker and exporting
+it later on as a singularity image (this is more complex when using a mac with ARM64).
+
+The definition files can be found in their respective directory and the following commands
+can be used to download them to use on the pipeline:
+
+For cellpose-sam:
+$ singularity pull --arch amd64 library://sebgoti/bioimage/cp-sam:4.0.7
+
+For instanseg:
+$ singularity pull --arch amd64 library://sebgoti/bioimage/instanseg:0.0.1

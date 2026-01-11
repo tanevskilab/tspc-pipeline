@@ -1,0 +1,36 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+
+%labels
+    Author Sebastian Gonzalez Tirado
+    Version v1.0
+    Description "Singularity image with Python 3.11 and gpu-enabled instanseg"
+
+%post
+    # Update system and install dependencies
+    apt-get update && apt-get install -y \
+        build-essential \
+        git \
+        wget \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Install Python libraries
+    pip install --no-cache-dir \
+        numpy \
+        pandas \
+        scikit-learn \
+        scanpy \
+        instanseg-torch[full]
+
+%environment
+    # Set environment variables
+    export LC_ALL=C
+    export LANG=C
+    export PATH=/usr/local/bin:$PATH
+    export PYTHONUNBUFFERED=1
+    export MPLCONFIGDIR=/tmp/mpl_cache
+    export NUMBA_CACHE_DIR=/tmp/numba_cache
+
+%runscript
+    exec python3 "$@"
+
